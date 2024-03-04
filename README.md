@@ -1,8 +1,8 @@
 # Beecrowd Python Challenges
 
-Repository to store answers to beecrowd challenges made in Python 3.11 that may be of help to others.
+Repository to store answers to beecrowd challenges made in Python 3.11 that may be of help to others. File names in pt-br to make searching easier for Brazilians.
 
-![Beecrowd Logo](images/beecrowd.jpg)
+![Beecrowd Logo](images/beecrowd.png)
 
 ### About of implementation
 
