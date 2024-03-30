@@ -1,41 +1,35 @@
-salary = float(input())
+def get_tax(salary):
+    tax_to_pay = 0 
+    
+    if salary > 2000:
+        tax = 8
+        if(salary >= 3000):
+            salary_to_calc = 1000
+        else:            
+            salary_to_calc = salary - 2000
+        tax_to_pay += salary_to_calc * (tax / 100)    
+    
+    if salary > 3000:
+        tax = 18       
+        if(salary >= 4500):
+            salary_to_calc = 1500
+        else:            
+            salary_to_calc = salary - 3000
+        tax_to_pay += salary_to_calc * (tax / 100)
+    
+    if salary > 4500:
+        tax = 28       
+        salary_to_calc = salary - 4500
+        tax_to_pay += salary_to_calc * (tax / 100)    
+    
+    return tax_to_pay
 
-def get_salary_to_apply_tax_min(salary:float, min:float) -> float:  
-    salary_to_apply_tax = 0
-    if salary > min:
-        salary_to_apply_tax = salary - min
-    return salary_to_apply_tax
+def main():
+    salary = float(input())
+    tax = get_tax(salary)
+    if(tax > 0):        
+        print(f"R$ {tax:.2f}")
+    else:
+        print("Isento")
 
-def get_salary_to_apply_tax_max(salary:float, max:float) -> float:  
-    salary_to_apply_tax = 0
-    if salary > max:
-        salary_to_apply_tax = max
-    return salary_to_apply_tax
-
-def get_salary_to_apply_tax_in_range(salary:float, min:float, max:float) -> float:
-    salary_to_apply_tax = 0
-    salary_to_apply_tax += get_salary_to_apply_tax_max(salary, max)
-    salary_to_apply_tax += get_salary_to_apply_tax_min(salary, min)    
-    return salary_to_apply_tax
-
-def get_tax_min(tax_per_cent:int, salary:float, min:float) -> float:
-    return (tax_per_cent / 100) * get_salary_to_apply_tax_min(salary, min)
-
-def get_tax_in_range(tax_per_cent:int, salary:float, min:float, max:float) -> float:
-    return (tax_per_cent / 100) * get_salary_to_apply_tax_in_range(salary, min, max)
-
-def try_get_tax(salary:float):
-    can_get_tax = False
-    tax = 0
-    tax += get_tax_in_range(8, salary, 2000, 3000)    
-    tax += get_tax_in_range(18, salary, 3000, 4500)    
-    tax += get_tax_min(28, salary, 4500)    
-    if tax > 0:
-        can_get_tax = True
-    return can_get_tax, tax
-
-can_get_tax, tax = try_get_tax(salary)
-if(can_get_tax):
-    print(tax)
-else:
-    print("Isento")
+main()

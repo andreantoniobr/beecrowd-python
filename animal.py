@@ -1,32 +1,61 @@
-p1 = input()
-p2 = input()
-p3 = input()
-data = [p1, p2, p3]
+# Ex. Using only functios and condition structures.
+# See animal_dictionary archive for dictionary use.
 
-animals = {
-    "aguia": ["vertebrado", "ave", "carnivoro"],
-    "pomba": ["vertebrado", "ave", "onivoro"],
-    "homem": ["vertebrado", "mamifero", "onivoro"],
-    "vaca":  ["vertebrado", "mamifero", "herbivoro"],
-    "pulga":       ["invertebrado", "inseto", "hematofago"],
-    "lagarta":     ["invertebrado", "inseto", "herbivoro"],
-    "sanguessuga": ["invertebrado", "anelideo", "hematofago"],
-    "minhoca":     ["invertebrado", "anelideo", "onivoro"]
-}
+def is_vertebrate(animal_subphylum):
+    return animal_subphylum == "vertebrado"
 
-def try_get_animal_name(data) -> str:
-    can_get_animal_name = False
-    animal_name = ""
-    for key, animal_data in animals.items():
-        if animal_data == data:
-            animal_name = key
-            can_get_animal_name = True
-            break
-    return can_get_animal_name, animal_name 
+def is_invertebrate(animal_subphylum):
+    return animal_subphylum == "invertebrado"
 
-can_get_animal_name, animal_name = try_get_animal_name(data)
+def is_bird(animal_class):
+    return animal_class == "ave"
 
-if can_get_animal_name:
-    print(animal_name)
-else:
-    print("None")
+def is_insect(animal_class):
+    return animal_class == "inseto"
+
+def is_mammal(animal_class):
+    return animal_class == "mamifero"
+
+def is_annelid(animal_class):
+    return animal_class == "anelideo"
+
+def is_carnivore(animal_order):
+    return animal_order == "carnivoro"
+
+def is_herbivore(animal_order):
+    return animal_order == "herbivoro"
+
+def is_omnivorous(animal_order):
+    return animal_order == "onivoro"
+
+def is_hematophagous(animal_order):
+    return animal_order == "hematofago"
+
+def get_animal(animal_subphylum, animal_class, animal_order):
+    if is_vertebrate(animal_subphylum) and is_bird(animal_class) and is_carnivore(animal_order):
+        animal = "aguia"
+    elif is_vertebrate(animal_subphylum) and is_bird(animal_class) and is_omnivorous(animal_order):
+        animal = "pomba"
+    elif is_vertebrate(animal_subphylum) and is_mammal(animal_class) and is_omnivorous(animal_order):
+        animal = "homem"
+    elif is_vertebrate(animal_subphylum) and is_mammal(animal_class) and is_herbivore(animal_order):
+        animal = "vaca"
+    elif is_invertebrate(animal_subphylum) and is_insect(animal_class) and is_hematophagous(animal_order):
+        animal = "pulga"
+    elif is_invertebrate(animal_subphylum) and is_insect(animal_class) and is_herbivore(animal_order):
+        animal = "lagarta"
+    elif is_invertebrate(animal_subphylum) and is_annelid(animal_class) and is_hematophagous(animal_order):
+        animal = "sanguessuga"
+    elif is_invertebrate(animal_subphylum) and is_annelid(animal_class) and is_omnivorous(animal_order):
+        animal = "minhoca"
+    else:
+        animal = "none"
+    return animal
+
+def main():
+    animal_subphylum  = input()
+    animal_class = input()
+    animal_order = input()
+    print(get_animal(animal_subphylum, animal_class, animal_order)) 
+
+main()   
