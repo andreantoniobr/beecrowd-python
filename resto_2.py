@@ -1,7 +1,12 @@
-start = 1
-end = 10_000
-n = int(input())
+def print_numbers_rest_two(number):
+    i = 1
+    while i <= 10000:
+        if i % number == 2:
+            print(i)
+        i += 1
 
-for i in range(start, end + 1):
-    if i % n == 2:
-        print(i)
+def main():
+    number = int(input())
+    print_numbers_rest_two(number)
+
+main()

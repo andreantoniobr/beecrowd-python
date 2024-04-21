@@ -1,6 +1,13 @@
-start = 1
-end = int(input())
+def print_odd_numbers(start, end):
+    i = start
+    while i <= end:
+        if i % 2 != 0:
+            print(i)
+        i += 1
 
-for number in range(start, end + 1):
-    if number % 2 != 0:
-        print(number)
+def main():
+    start = 1
+    end = int(input())
+    print_odd_numbers(start, end)
+
+main()
